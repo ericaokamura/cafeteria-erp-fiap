@@ -54,7 +54,6 @@ export default function CardapioEditor() {
             const response = await fetch('http://localhost:8090/csv/uploadProdutos', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
                 },
                 body: formData

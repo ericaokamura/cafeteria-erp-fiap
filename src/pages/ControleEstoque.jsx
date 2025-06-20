@@ -53,7 +53,6 @@ export default function ControleEstoque() {
           const response = await fetch('http://localhost:8090/csv/uploadItensEstoque', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             },
             body: formData
