@@ -1,0 +1,42 @@
+.menu {
+    background-color: #442121;
+    width: 90%;
+    text-align: center;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    justify-self: anchor-center;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    margin-top: -15px;
+    background-color: #FFFFFF;
+    border: 2px solid #442121;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+h4 {
+    color: #FFFFFF;
+    height: 100%;
+    margin: 0 auto;
+    align-content: center;
+    font-weight: 500;
+}
+
+@media (max-width: 512px) {
+
+    .circle {
+        display: none;
+    }
+
+    h4 {
+        font-size: 10px;
+        font-weight: 500;
+    }
+}
