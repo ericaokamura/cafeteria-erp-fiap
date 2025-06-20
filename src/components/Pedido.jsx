@@ -12,11 +12,21 @@ export default function Pedido({ pedido }) {
   useEffect(() => {
 
     const carregarItensPedido = async () => {
+      
       const itensCarregados = [];
+
+      const token = sessionStorage.getItem("token");
 
       try {
         for (const item of itensPedido) {
-          const response = await fetch('http://localhost:8090/produtos/' + item.idProduto);
+          const response = await fetch('http://localhost:8090/produtos/' + item.idProduto, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+          })
+
           if (!response.ok) {
             throw new Error('Erro na requisição do produto ' + item.idProduto);
           }
@@ -30,6 +40,8 @@ export default function Pedido({ pedido }) {
           });
         }
 
+        console.log("Erica", itensCarregados);
+
         setItens(itensCarregados);
 
         const soma = itensCarregados.reduce((acc, curr) => acc + curr.subtotal, 0);
@@ -42,7 +54,7 @@ export default function Pedido({ pedido }) {
 
     carregarItensPedido();
 
-  }, [itensPedido]); // Executa quando itensPedido muda
+  }, [itensPedido]);
 
 
   const finalizarPedido = async () => {
@@ -104,13 +116,13 @@ export default function Pedido({ pedido }) {
           <h2 className="comanda">Comanda {pedido.comanda} - ({pedido.nomeCliente})</h2>
           <h3 className="table">Mesa {pedido.mesa}</h3>
           <div className="itemList">
-            {itens.map((i, index) => (
+            {itens.map((item, index) => (
               <div key={index} className="summaryRow">
-                <span>Produto: {i.descricao}</span>
+                <span>Produto: {item.descricao}</span>
                 <br />
-                <span>Qtd: {i.quantidade}</span>
+                <span>Qtd: {item.quantidade}</span>
                 <br />
-                <span><strong>Subtotal: R$ {i.subtotal.toFixed(2)}</strong></span>
+                <span><strong>Subtotal: R$ {item.subtotal.toFixed(2)}</strong></span>
               </div>
             ))}
           </div>
