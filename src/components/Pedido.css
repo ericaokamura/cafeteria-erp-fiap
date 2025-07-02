@@ -16,6 +16,7 @@
   }
   
   .orderInfo {
+    margin-top: 20px;
     justify-items: center;
     flex: 1;
   }
@@ -99,3 +100,37 @@
     border-top: 1px solid #aaa;
   }
   
+   
+  .editeButton {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid #888;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    color: black;
+    margin-right: 20px;
+  }
+  
+  .editeButton:hover {
+    background-color: #f0f0f0;
+  }
+
+  .envieButton {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid #888;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    color: black;
+    margin-right: 20px;
+  }
+  
+  .envieButton:hover {
+    background-color: #f0f0f0;
+  }

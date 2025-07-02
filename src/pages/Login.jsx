@@ -10,11 +10,13 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('token') ? true : false);
 
     const logout = () => {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('role');
         sessionStorage.removeItem('email');
+        setIsLoggedIn(false);
         navigate("/login");
     }
 
@@ -39,6 +41,7 @@ export default function Login() {
                 sessionStorage.setItem('token', data.token);
                 sessionStorage.setItem('role', data.role);
                 sessionStorage.setItem('email', username);
+                setIsLoggedIn(true);
                 navigate("/dashboard");
             } else {
                 const errorData = await response.text();
@@ -56,7 +59,9 @@ export default function Login() {
             <Menu/>
             <form onSubmit={doLogin} className="container">
                 <h1 className="title">LOGIN</h1>
-                <Link className="links-logout" onClick={logout}><h4>Logout</h4></Link>
+                {isLoggedIn && sessionStorage.getItem('token') && (
+                    <Link className="links-logout" onClick={logout}><h4>Logout</h4></Link>
+                )}   
                 <div className="formGroup">
                     <label className="label">Usuário:</label>
                     <div className="radioGroup">
@@ -81,31 +86,34 @@ export default function Login() {
                             Gerente
                         </label>
                     </div>
-                    <input
-                        className="input"
-                        type="text"
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Digite seu usuário"
-                        required
-                    />
+                    <div>
+                        <input
+                            className="input"
+                            type="text"
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Digite seu usuário"
+                            required
+                        />
+                    </div>
                 </div>  
-
                 <div className="formGroup">
                     <label className="label">Senha:</label>
-                    <input
-                        className="input"
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Digite sua senha"
-                        required
-                    />
+                    <div>
+                        <input
+                            className="input"
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Digite sua senha"
+                            required
+                        />
+                    </div>
                     <div className="links-esqueci-a-senha">
                         <a href="#">Esqueci a senha</a>
                     </div> 
                 </div>                
-
-                <button className="button" type="submit">Entrar</button>
-
+                <div>
+                    <button className="button" type="submit">Entrar</button>
+                </div>
                 <div className="links-novo-cadastro">
                     <Link to="/novo-cadastro">Novo Cadastro</Link>
                 </div>

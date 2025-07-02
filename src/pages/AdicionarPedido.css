@@ -2,17 +2,12 @@
     padding: 20px;
     margin-top: 150px;
   }
-  
-  table {
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    padding: 8px 12px;
-  }
 
-  .button {
+.itens-pedido{
+    margin: 20px;
+}
+
+.button-adicionar-produto {
     margin-top: 20px;
     padding: 8px 20px;
     border: 1px solid #888;
@@ -25,10 +20,15 @@
     margin-right: 20px;
   }
   
-  .button:hover {
+  .button-adicionar-produto:hover {
     background-color: #f0f0f0;
   }
 
-  .headerButtons {
+  .campos{
+    margin-top: 30px;
     justify-items: center;
   }
+
+.input-field {
+    border-radius: 3px;
+}

@@ -1,7 +1,6 @@
 .container {
     background-color: white;
     padding: 40px;
-    width: 1000px;
     margin: 50px auto;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -15,15 +14,12 @@
     margin-bottom: 30px;
   }
   
-  .formGroup {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
   
   .label {
     text-align: start;
     display: block;
     margin-bottom: 8px;
+    margin-top: 20px;
     font-weight: 500;
   }
   
@@ -40,7 +36,7 @@
   }
   
   .input {
-    width: 100%;
+    width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #e6e6e6;
@@ -75,7 +71,6 @@
 
   .links-logout {
     text-align: start;
-    margin: 10px 0;
   }
 
   .links-logout h4 {

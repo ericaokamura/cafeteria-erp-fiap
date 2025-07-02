@@ -59,7 +59,29 @@ th, td {
     padding: 8px 12px;
 }
 
-input {
+.input-quantidade {
     max-width: 200px;
 }
+
+.button {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid #888;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    color: black;
+    margin-right: 20px;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .headerButtons {
+    justify-items: center;
+  }
+
 

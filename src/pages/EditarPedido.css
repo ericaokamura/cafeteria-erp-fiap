@@ -1,0 +1,88 @@
+.container {
+    padding: 20px;
+    margin-top: 150px;
+}
+
+.itens-pedido {
+    background-color: white;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.itens-pedido h2 {
+    color: #000000;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 650;
+}
+
+.campos {
+    align-content: flex-start;
+    margin-bottom: 30px;
+    display: inline-flex; 
+    margin-top: 50px;
+}
+
+.campos h4 {
+    color: #000000;
+    font-weight: 400;
+    margin-right: 30px; 
+    margin-left: 30px; 
+    vertical-align: center;
+}
+
+.botao-enviar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.botao-enviar button {
+    width: 150px;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.botao-voltar {
+    text-align: right;
+    margin-top: 30px;
+    width: 20%;
+}
+
+.botao-voltar button {
+    width: 100px;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.formulario {
+    margin: 0 auto;
+    justify-self: anchor-center;
+}
+
+.itens-pedido{
+    display: fit-content;
+}
+
+.button-adicionar-produto {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid #888;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    color: black;
+    margin-right: 20px;
+}
+  
+.button-adicionar-produto:hover {
+    background-color: #f0f0f0;
+}
+
+.input-field {
+    border-radius: 3px;
+    padding-left: 5px;
+}

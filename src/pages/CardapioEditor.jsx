@@ -13,7 +13,7 @@ export default function CardapioEditor() {
 
         const carregarProdutos = async () => {
             try {
-              const response = await fetch('http://localhost:8090/produtos/', {
+              const response = await fetch('http://localhost:8090/produtos', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function CardapioEditor() {
     
             if (response.ok) {
                 setStatus('Upload successful!');
-                const res = await fetch('http://localhost:8090/produtos/', {
+                const res = await fetch('http://localhost:8090/produtos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default function CardapioEditor() {
                         <h3>Adicionar Novos Produtos (Lote)</h3>
                         <input type="file" accept=".csv" onChange={handleFileChange} />
                         <br /><br />
-                        <button onClick={handleUpload}>Faça o upload do CSV</button>
+                        <button className="button" onClick={handleUpload}>Faça o upload do CSV</button>
                         <p>{status}</p>
                     </div>
                 </div>
@@ -100,7 +100,9 @@ export default function CardapioEditor() {
                     <div key={index} className="productCard">
                         <div className="productInfo">
                             <div>
-                                <p className="productName">Descrição: {product.descricao}</p>
+                                <p className="name">Nome: {product.nome}</p>
+                                <p className="description">Descrição: {product.descricao}</p>
+                                <p className="tags">Tags: {product.tags}</p>
                                 <p className="description">Preço: R$ {product.valorUnitario.toFixed(2)}</p>
                             </div>
                         </div>

@@ -89,7 +89,7 @@ export default function ControleEstoque() {
             <h3>Adicionar Novos Produtos (Lote)</h3>
             <input type="file" accept=".csv" onChange={handleFileChange} />
             <br /><br />
-            <button onClick={handleUpload}>Faça o upload do CSV</button>
+            <button className="button" onClick={handleUpload}>Faça o upload do CSV</button>
             <p>{status}</p>
         </div>
         <table className="table">
@@ -109,7 +109,7 @@ export default function ControleEstoque() {
                         type="number"
                         value={item.quantidadeIdeal}
                         disabled="true"
-                        className="input"
+                        className="input-quantidade"
                         />
                     </td>
                     <td>
@@ -117,7 +117,7 @@ export default function ControleEstoque() {
                         type="number"
                         value={item.quantidadeAtual}
                         disabled="true"
-                        className="input"
+                        className="input-quantidade"
                         />
                     </td>
                     </tr>

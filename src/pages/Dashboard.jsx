@@ -8,7 +8,8 @@ export default function Dashboard() {
     <>
         <Menu/>
         <div className="container">
-            <Link to="/gestao-pedido"><button className="button">Gestão de Pedidos</button></Link>
+            <Link to="/adicionar-pedido"><button className="button">Adicionar Pedido</button></Link>
+            <Link to="/gestao-pedidos"><button className="button">Gestão de Pedidos</button></Link>
             <Link to="/editar-cardapio"><button className="button">Visualizar Produtos do Cardápio</button></Link>
             <Link to="/controle-estoque"><button className="button">Gestão de Estoque</button></Link>
         </div>

@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import Menu from '../components/Menu';
 import Pedido from '../components/Pedido';
-import './GestaoPedido.css';
+import './GestaoPedidos.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function GestaoPedido() {
+export default function GestaoPedidos() {
     const navigate = useNavigate();
     const [pedidos, setPedidos] = useState([]);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const userEmail = localStorage.getItem("email");
+        const token = sessionStorage.getItem("token");
+        const userEmail = sessionStorage.getItem("email");
 
         if (!token || !userEmail) {
             navigate('/login');
@@ -44,6 +44,7 @@ export default function GestaoPedido() {
 
                 const data = await response.json();
                 setPedidos(data);
+                console.log("todos os pedidos", data);
 
             } catch (error) {
                 console.error("Erro ao buscar pedidos:", error);
@@ -57,10 +58,14 @@ export default function GestaoPedido() {
         <>
             <Menu />
             <div className="container">
-                <h1 className="title">Gestão de Pedidos</h1>
-                {pedidos.map((p, index) => (
-                    <Pedido key={index} pedido={p} />
-                ))}
+                <h2>Pedidos</h2>
+                {pedidos.length > 0 && (
+                    <div>
+                        {pedidos.map((p, index) => (
+                            <Pedido key={index} pedido={p}/>
+                        ))}
+                    </div>
+                )}
             </div>
         </>
     );
