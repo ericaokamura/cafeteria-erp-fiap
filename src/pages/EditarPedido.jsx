@@ -1,6 +1,5 @@
 import './EditarPedido.css';
 import Menu from '../components/Menu'
-import ItemPedido from '../components/ItemPedido'
 import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useEffect } from 'react';

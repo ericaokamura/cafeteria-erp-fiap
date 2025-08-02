@@ -12,6 +12,7 @@ export default function Dashboard() {
             <Link to="/gestao-pedidos"><button className="button">Gestão de Pedidos</button></Link>
             <Link to="/editar-cardapio"><button className="button">Visualizar Produtos do Cardápio</button></Link>
             <Link to="/controle-estoque"><button className="button">Gestão de Estoque</button></Link>
+            <Link to="/estoque-qa"><button className="button">Estoque QA</button></Link>
         </div>
     </>
   );

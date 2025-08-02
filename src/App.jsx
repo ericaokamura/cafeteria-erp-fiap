@@ -7,6 +7,7 @@ import CardapioEditor from './pages/CardapioEditor'
 import ControleEstoque from './pages/ControleEstoque'
 import EditarPedido from './pages/EditarPedido'
 import AdicionarPedido from './pages/AdicionarPedido'
+import EstoqueQA from './pages/EstoqueQA.jsx'
 import Dashboard from './pages/Dashboard'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/editar-pedido/:id" element={<EditarPedido />}/>
           <Route path="/adicionar-pedido" element={<AdicionarPedido />}/>
           <Route path="/controle-estoque" element={<ControleEstoque />}/>
+          <Route path="/estoque-qa" element={<EstoqueQA />}/>
         </Routes>
       </Router>
     </>
