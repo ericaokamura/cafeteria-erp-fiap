@@ -18,3 +18,16 @@
     width: 500px;
     padding-left: 10px;
 }
+
+.sendButton {
+    padding: 8px 12px;
+    background-color: white;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sendButton:hover {
+    background-color: white;
+}  

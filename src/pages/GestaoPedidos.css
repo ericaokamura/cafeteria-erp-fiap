@@ -15,3 +15,25 @@
 h2{
   font-size: 34px;
 }
+
+.filterButton {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    height: 30px;
+    font-size: medium;
+    padding: 8px 12px;
+    background-color: white;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.divider {
+  justify-self: center;
+  margin-top: 30px;
+  width: 600px;
+  border: none;
+  border-top: 1px solid #aaa;
+}

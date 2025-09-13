@@ -9,6 +9,7 @@ import EditarPedido from './pages/EditarPedido'
 import AdicionarPedido from './pages/AdicionarPedido'
 import EstoqueQA from './pages/EstoqueQA.jsx'
 import Dashboard from './pages/Dashboard'
+import Relatorios from './pages/Relatorios'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/adicionar-pedido" element={<AdicionarPedido />}/>
           <Route path="/controle-estoque" element={<ControleEstoque />}/>
           <Route path="/estoque-qa" element={<EstoqueQA />}/>
+          <Route path="/relatorios" element={<Relatorios />}/>
         </Routes>
       </Router>
     </>

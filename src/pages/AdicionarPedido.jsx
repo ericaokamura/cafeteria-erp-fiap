@@ -13,11 +13,13 @@ export default function AdicionarPedido() {
 
     const [selectedProduct, setSelectedProduct] = useState({});
 
+    const [quantidade, setQuantidade] = useState(0);
+
     const adicionarItemProduto = () => {
 
         let itens = [];
         
-        itens.push({ idProduto: selectedProduct, quantidade: 1 });
+        itens.push({ idProduto: selectedProduct, quantidade: quantidade });
 
         console.log(itens);
 
@@ -83,7 +85,6 @@ export default function AdicionarPedido() {
                                 <h2 style={{ margin: "20px auto" }}>Iniciar Pedido</h2>
                             </div>
                         </div>
-                        <hr style={{border:"1px solid #ccc",margin:"20px 0"}}/>
                         <div className="campos">
                             <h4 style={{fontWeight: "400", marginLeft: "0",marginRight: "10px", verticalAlign:"center"}}>Nome: </h4>
                             <input className="input-field" type="text" value={nomeCliente} onChange={event => {setNomeCliente(event.target.value)}} style={{backgroundColor:"#FFFFFF",width:"250px",height:"30px"}}/>
@@ -92,7 +93,6 @@ export default function AdicionarPedido() {
                             <h4 style={{fontWeight: "400", marginRight: "10px", verticalAlign:"center"}}>Mesa: </h4>
                             <input className="input-field" type="text" value={mesa} onChange={event => {setMesa(event.target.value)}} style={{backgroundColor:"#FFFFFF",width:"50px",height:"30px"}}/>
                         </div>
-                        <hr style={{border:"1px solid #ccc",margin:"20px 0"}}/>
                         <div style={{display:"inline-flex",width:"80%"}}>
                             <div style={{textAlign: "center", width:"100%", marginTop: "0px", marginBottom: "20px"}}>
                                 <h3>Adicionar Item Pedido</h3>
@@ -110,9 +110,16 @@ export default function AdicionarPedido() {
                                     ))}
                             </select>
                             <br/>
+                            <div style={{marginTop: "20px"}}>
+                                <h3>Quantidade:</h3>
+                                <h2>
+                                    <input style={{height: "30px"}} type="number" min="0" onChange={e => setQuantidade(e.target.value)}></input>
+                                </h2>
+                            </div>
+                            <br/>
                             <button className="button-adicionar-produto" style={{}} onClick={adicionarItemProduto}>Adicionar</button>
                         </div>
-                    </div>    
+                    </div>
                 </form>  
             </div>
         </>

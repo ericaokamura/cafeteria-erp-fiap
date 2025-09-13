@@ -47,15 +47,13 @@ export default function Pedido({ pedido }) {
           });
         }
 
-        console.log("Erica", itensCarregados);
-
         setItens(itensCarregados);
 
         const soma = itensCarregados.reduce((acc, curr) => acc + curr.subtotal, 0);
         setTotal(soma);
 
       } catch (error) {
-        console.error("Erro ao buscar produto:", error);
+        console.error("Erro ao buscar itens do pedido:", error);
       }
     };
 
@@ -151,12 +149,18 @@ export default function Pedido({ pedido }) {
   return (
     <>
       <div className="orderBox">
-        <hr className="divider" />
         <div className="orderInfo">
           <h2 className="comanda">Comanda: {pedido.comanda}</h2>
           <h3 className="table">Nome do cliente: {pedido.nomeCliente}</h3>
           <h3 className="table">Status: {pedido.statusPedido}</h3>
           <h3 className="table">Mesa: {pedido.mesa}</h3>
+          <h3 className="table">Comentários: 
+              <ul>
+                  <div>
+                      {pedido.comentarios}
+                  </div>    
+              </ul>
+          </h3>
           <h3 className="table">Forma de pagamento: {pedido.formaPagamento}</h3>
           <div className="itemList">
             {itens.map((item, index) => (
@@ -188,6 +192,7 @@ export default function Pedido({ pedido }) {
             <button className="cancelButton" onClick={cancelarPedido}>Cancelar Pedido</button>
           </div>
         </div>
+        <hr className="divider" />
       </div>
     </>
   );

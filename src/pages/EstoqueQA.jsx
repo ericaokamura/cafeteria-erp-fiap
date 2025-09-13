@@ -49,7 +49,7 @@ export default function EstoqueQA() {
                     onChange={(e) => setQuestion(e.target.value)}
                 />
                 <br />
-                <button type="submit" style={{ marginTop: "20px" }}>Enviar</button>
+                <button type="submit" className="sendButton" style={{ marginTop: "20px" }}>Enviar</button>
             </div>
 
             {resposta && (

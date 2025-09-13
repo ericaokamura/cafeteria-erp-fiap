@@ -14,6 +14,8 @@ export default function EditarPedido() {
 
     const [pedido, setPedido] = useState({});
 
+    const [comentarios, setComentarios] = useState('');
+
     const [formaPagamento, setFormaPagamento] = useState('');
 
     const [comanda, setComanda] = useState(0);
@@ -38,7 +40,6 @@ export default function EditarPedido() {
         
                 if (response.ok) {
                   const data = await response.json();
-                  console.log("Pedido", data);
                   setPedido(data);
                   setNomeCliente(data.nomeCliente);
                   setMesa(data.mesa);
@@ -167,6 +168,30 @@ export default function EditarPedido() {
         carregarProdutos();
     }, []);
 
+    const onEnviarComentario = () => {
+
+        const token = sessionStorage.getItem("token");
+
+        console.log("comentarios", comentarios);
+
+        const salvarComentarios = async () => {
+            try {
+              const response = await fetch(`http://localhost:8090/pedidos/${pedido.id}/comentarios/${comentarios}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+              });
+              const data = await response.json();
+              setProducts(data);
+            } catch (error) {
+              console.error("Erro ao enviar comentários:", error);
+            }
+        };
+        salvarComentarios();
+    };
+
     return (
         <>
             <Menu/>
@@ -218,6 +243,12 @@ export default function EditarPedido() {
                                 <button style={{justifySelf: "center", marginRight: 0}} className="button-adicionar-produto" onClick={adicionarItemProduto}>Adicionar Produto</button>
                             </div>
                         </div>
+                        <div style={{marginTop:"20px"}}>
+                            <h3 style={{marginTop:"20px"}}>Adicionar ou Editar Comentário</h3>
+                            <h4 className="comentarios">{comentarios}</h4>
+                            <input value={pedido.comentarios} style={{height: "30px",marginRight: "20px"}} onChange={e=>setComentarios(e.target.value)}></input>
+                            <button style={{border: "1px solid #000000"}} onClick={onEnviarComentario}>Enviar comentário</button>
+                         </div> 
                         <div style={{marginTop: "30px"}}>
                             <h3>Forma de Pagamento</h3>
                             <select style={{marginTop: "20px"}} name="forma-pagamento" value={formaPagamento} onChange={(event) => handleFormaPagamentoChange(event.target.value)}>
