@@ -42,7 +42,7 @@ export default function Login() {
                 sessionStorage.setItem('role', data.role);
                 sessionStorage.setItem('email', username);
                 setIsLoggedIn(true);
-                navigate("/dashboard");
+                navigate("/menu");
             } else {
                 const errorData = await response.text();
                 console.log("Erro:", errorData);
@@ -61,9 +61,8 @@ export default function Login() {
                 <h1 className="title">LOGIN</h1>
                 {isLoggedIn && sessionStorage.getItem('token') && (
                     <Link className="links-logout" onClick={logout}><h4>Logout</h4></Link>
-                )}   
+                )}  
                 <div className="formGroup">
-                    <label className="label">Usuário:</label>
                     <div className="radioGroup">
                         <label>
                             <input

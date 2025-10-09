@@ -1,15 +1,29 @@
 import Menu from '../components/Menu'
 import './NovoCadastro.css'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function NovoCadastro() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    const [cpf, setCpf] = useState('');
+
+    const navigate = useNavigate();
 
     const salvarCadastro = async (e) => {
         e.preventDefault();
+
+        if(password === '') {
+            alert("A senha não deve estar vazia.")
+            return;
+        }
+
+        if(password.length < 8) {
+            alert("A senha deve conter pelo menos 8 caracteres.")
+            return;
+        }
         
         try {
             const response = await fetch('http://localhost:8090/cadastro', {
@@ -18,12 +32,14 @@ export default function NovoCadastro() {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
               },
-              body: JSON.stringify({ nomeUsuario: username, senha: password, tipoFuncionario: role })
+              body: JSON.stringify({ nomeUsuario: username, senha: password, cpf: cpf, tipoFuncionario: role })
             });
     
             if (response.ok) {
               setUsername('');
               setPassword('');
+              setCpf('');
+              navigate("/login");
             } else {
               const errorData = await response.json();
               console.log(errorData)
@@ -63,7 +79,7 @@ export default function NovoCadastro() {
                     <div className="row">
                         <div className="column">
                             <label>CPF:</label>
-                            <input type="text" className="input" />
+                            <input value={cpf} type="text" className="input" onChange={(e) => setCpf(e.target.value)} placeholder="Digite apenas números" />
                         </div>
                         <div className="column">
                             <label>RG:</label>

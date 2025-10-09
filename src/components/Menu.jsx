@@ -19,15 +19,19 @@ export default function Menu() {
                 <div style={{paddingLeft:"60px",paddingRight:"60px"}}>
                     <h4>CONTATO</h4>
                 </div>
-                <div style={{paddingLeft:"60px",paddingRight:"60px"}}>
-                    <Link to="/login"><h4>LOGIN</h4></Link>
-                </div>
                 {isTokenValid ? (
-                    <div style={{paddingLeft:"60px",paddingRight:"60px"}}>
-                        <Link to="/dashboard"><h4>DASHBOARD</h4></Link>
-                    </div>
+                    <>
+                        <div style={{ paddingLeft: "60px", paddingRight: "60px" }}>
+                            <Link to="/logout"><h4>LOGOUT</h4></Link>
+                        </div>
+                        <div style={{ paddingLeft: "60px", paddingRight: "60px" }}>
+                            <Link to="/menu"><h4>MENU</h4></Link>
+                        </div>
+                    </>
                 ):(
-                    <div style={{paddingLeft:"60px",paddingRight:"60px"}}></div>
+                    <div style={{paddingLeft:"60px",paddingRight:"60px"}}>
+                        <Link to="/login"><h4>LOGIN</h4></Link>
+                    </div>
                 )}
             </div>
         </>

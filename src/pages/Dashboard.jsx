@@ -14,6 +14,7 @@ export default function Dashboard() {
             <Link to="/controle-estoque"><button className="button">Gestão de Estoque</button></Link>
             <Link to="/estoque-qa"><button className="button">Estoque QA</button></Link>
             <Link to="/relatorios"><button className="button">Exportação de Relatórios</button></Link>
+            <Link to="/dados-pessoais"><button className="button">Dados Pessoais</button></Link>
         </div>
     </>
   );

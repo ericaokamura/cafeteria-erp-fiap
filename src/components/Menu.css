@@ -15,9 +15,11 @@
     width: 80px;
     height: 80px;
     margin-top: -15px;
-    background-color: #FFFFFF;
+    background-image: url('../assets/logo2.jpeg');
     border: 2px solid #442121;
     border-radius: 50%;
+    background-position: center;
+    background-size: cover;
     display: inline-block;
 }
 
