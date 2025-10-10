@@ -15,6 +15,16 @@ export default function NovoCadastro() {
     const salvarCadastro = async (e) => {
         e.preventDefault();
 
+        if(username === '') {
+            alert("O email não deve estar vazio.")
+            return;
+        }
+
+        if(role === '') {
+            alert("Escolha um tipo de funcionário.")
+            return;
+        }
+
         if(password === '') {
             alert("A senha não deve estar vazia.")
             return;
