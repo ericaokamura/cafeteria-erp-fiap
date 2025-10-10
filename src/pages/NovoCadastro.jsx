@@ -48,6 +48,7 @@ export default function NovoCadastro() {
             if (response.ok) {
               setUsername('');
               setPassword('');
+              setRole('');
               setCpf('');
               navigate("/login");
             } else {
