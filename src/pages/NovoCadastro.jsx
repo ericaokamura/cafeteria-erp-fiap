@@ -9,6 +9,7 @@ export default function NovoCadastro() {
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
     const [cpf, setCpf] = useState('');
+    const [checked, setChecked] = useState(false);
 
     const navigate = useNavigate();
 
@@ -127,8 +128,18 @@ export default function NovoCadastro() {
                     <label>Senha:</label>
                     <input value={password} type="password" className="input" onChange={(e) => setPassword(e.target.value)}/>
 
+                    <div style={{marginTop: "20px"}}>
+                        <input type="checkbox" style={{marginRight: "10px"}} id="lgpd" name="lgpd" onChange={(e) => setChecked(e.target.checked)} required/>
+                        <label for="lgpd">
+                            Li e concordo com a
+                            <a style={{marginLeft: "5px"}} href="docs/politica_privacidade_LGPD.pdf" target="_blank">
+                            Política de Privacidade e Termos LGPD
+                            </a>.
+                        </label>
+                    </div>
+
                     <div className="buttonContainer">
-                        <button type="submit" className="button" onClick={salvarCadastro}>
+                        <button type="submit" className="button" onClick={salvarCadastro} disabled={!checked}>
                             Salvar
                         </button>
                     </div>
