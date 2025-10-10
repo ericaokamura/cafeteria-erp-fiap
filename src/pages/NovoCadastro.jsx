@@ -16,6 +16,11 @@ export default function NovoCadastro() {
     const salvarCadastro = async (e) => {
         e.preventDefault();
 
+        if(!checked) {
+            alert("Você precisa ler e concordar com a Política de Privacidade e Termos LGPD.");
+            return;
+        }
+
         if(username === '') {
             alert("O email não deve estar vazio.")
             return;
@@ -139,7 +144,7 @@ export default function NovoCadastro() {
                     </div>
 
                     <div className="buttonContainer">
-                        <button type="submit" className="button" onClick={salvarCadastro} disabled={!checked}>
+                        <button type="submit" className="button" onClick={salvarCadastro}>
                             Salvar
                         </button>
                     </div>
