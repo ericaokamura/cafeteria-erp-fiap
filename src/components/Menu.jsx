@@ -22,10 +22,10 @@ export default function Menu() {
                 {isTokenValid ? (
                     <>
                         <div style={{ paddingLeft: "60px", paddingRight: "60px" }}>
-                            <Link to="/logout"><h4>LOGOUT</h4></Link>
+                            <Link to="/menu"><h4>MENU</h4></Link>
                         </div>
                         <div style={{ paddingLeft: "60px", paddingRight: "60px" }}>
-                            <Link to="/menu"><h4>MENU</h4></Link>
+                            <Link to="/logout"><h4>LOGOUT</h4></Link>
                         </div>
                     </>
                 ):(

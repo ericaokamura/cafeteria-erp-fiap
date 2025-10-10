@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 export default function EstoqueQA() {
 
-    const token = sessionStorage.getItem("token");
+    
 
     const [resposta, setResposta] = useState('');
     const [question, setQuestion] = useState('');
@@ -12,8 +12,10 @@ export default function EstoqueQA() {
     const enviarPergunta = async (event) => {
         event.preventDefault();
 
+        const token = sessionStorage.getItem("token");
+
         try {
-            const response = await fetch(`http://localhost:8080/ai/${question}`, {
+            const response = await fetch(`http://localhost:8090/ai/${question}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
