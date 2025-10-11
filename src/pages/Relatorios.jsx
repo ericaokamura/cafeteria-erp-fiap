@@ -10,9 +10,13 @@ export default function Relatorios() {
     const [dataFim, setDataFim] = useState("");
 
     const onDownloadRelatorioVendas = async () => {
+
+        if(dataInicio === '' || dataFim === '') {
+            alert("Preencha as data de início e fim antes de realizar o download do relatório.")
+            return;
+        }
         
         const token = sessionStorage.getItem("token");
-
     
         try {
             const response = await fetch(`http://localhost:8090/export?dataInicio=${dataInicio}&dataFim=${dataFim}`, {
