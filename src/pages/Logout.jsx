@@ -1,11 +1,9 @@
-import Menu from '../components/Menu';
+import Header from '../components/Header';
 import './Logout.css';
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Logout() {
-
-    const navigate = useNavigate();
 
     const [sessaoEncerrada, setSessaoEncerrada] = useState(false);
 
@@ -18,7 +16,7 @@ export default function Logout() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <div className="container">
                 <h1 className="title">LOGOUT</h1>
                 {sessaoEncerrada ?

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import './CardapioEditor.css'
 
 export default function CardapioEditor() {
@@ -82,7 +83,7 @@ export default function CardapioEditor() {
 
     return(
         <>
-            <Menu/>
+            <Header/>
             <div className="container">
                 <div className="header">
                     <h2>Visualizar Produtos do Cardápio</h2>

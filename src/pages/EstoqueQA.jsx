@@ -1,5 +1,6 @@
 import './EstoqueQA.css';
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import React, { useState } from 'react';
 
 export default function EstoqueQA() {
@@ -51,7 +52,7 @@ export default function EstoqueQA() {
 
     return (
         <>
-        <Menu />
+        <Header />
         <div style={styles.container}>
             <h3>Chat com IA</h3>
             <br/>

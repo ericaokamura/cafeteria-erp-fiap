@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './ControleEstoque.css';
-import Menu from '../components/Menu'
+import Header from '../components/Header'
 
 export default function ControleEstoque() {
 
   const [data, setData] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
 
@@ -22,6 +21,16 @@ export default function ControleEstoque() {
         });
         const json = await response.json();
         setData(json);
+
+        const lowStockItems = json.filter(
+            (item) => item.quantidadeAtual < item.quantidadeIdeal
+        );
+    
+        if (lowStockItems.length > 0) {
+            console.log("no. de itens de estoque faltando", lowStockItems.length);
+            await sendBatchEmailAlert(lowStockItems);
+        }
+
       } catch (error) {
         console.error("Erro ao buscar itens do estoque:", error);
       }
@@ -68,8 +77,8 @@ export default function ControleEstoque() {
                     'Authorization': 'Bearer ' + token
                 }
               });
-              const data = await res.json();
-              setData(data);
+              const json = await res.json();
+              setData(json);
   
           } else {
               const error = await response.text();
@@ -80,9 +89,31 @@ export default function ControleEstoque() {
       }
   };   
 
+  async function sendBatchEmailAlert(lowStockItems) {
+    try {
+      const token = sessionStorage.getItem("token");
+      const response = fetch("http://localhost:8090/alert/emailBatch", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(lowStockItems),
+      });
+  
+      if (response.ok) {
+        console.log("Batch email alert sent successfully.");
+      } else {
+        console.error("Email batch failed:", response.status);
+      }
+    } catch (err) {
+      console.error("Erro ao enviar alerta por e-mail (batch):", err);
+    }
+  }
+
   return (
     <>
-    <Menu/>
+    <Header/>
     <div className="container">
         <h2 className="title">Controle de Estoque</h2>
         <div className="headerButtons">
@@ -98,30 +129,51 @@ export default function ControleEstoque() {
                     <th>PRODUTO</th>
                     <th>QUANTIDADE IDEAL</th>
                     <th>QUANTIDADE ATUAL</th>
+                    <th>STATUS</th>
                 </tr>
             </thead>
             <tbody>
-                {data.map((item, index) => (
-                    <tr key={item.id}>
-                    <td>{item.descricao}</td>
-                    <td>
-                        <input
-                        type="number"
-                        value={item.quantidadeIdeal}
-                        disabled="true"
-                        className="input-quantidade"
-                        />
-                    </td>
-                    <td>
-                        <input
-                        type="number"
-                        value={item.quantidadeAtual}
-                        disabled="true"
-                        className="input-quantidade"
-                        />
-                    </td>
-                    </tr>
-                ))}
+                {data.map((item, index) => {
+
+                    const isLowStock = item.quantidadeAtual < item.quantidadeIdeal;
+
+                    const circleStyle = {
+                        display: "inline-block",
+                        width: "12px",
+                        height: "12px",
+                        borderRadius: "50%",
+                        marginRight: "8px",
+                        backgroundColor: isLowStock ? "red" : "green",
+                    };
+
+                    return (
+                        <tr key={`${item.descricao}-${item.quantidadeIdeal}`}>
+                            <td>{item.descricao}</td>
+                            <td>
+                                <input
+                                type="number"
+                                value={item.quantidadeIdeal}
+                                disabled={true}
+                                className="input-quantidade"
+                                />
+                            </td>
+                            <td>
+                                <input
+                                type="number"
+                                value={item.quantidadeAtual}
+                                disabled={true}
+                                className="input-quantidade"
+                                />
+                            </td>
+                            <td>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <span style={circleStyle}></span>
+                                <span>{isLowStock ? "Faltando" : "Em estoque"}</span>
+                            </div>
+                            </td>
+                        </tr>
+                    );
+                })}
             </tbody>
         </table>
       

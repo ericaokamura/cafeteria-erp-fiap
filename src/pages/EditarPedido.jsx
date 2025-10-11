@@ -1,5 +1,6 @@
 import './EditarPedido.css';
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -194,7 +195,7 @@ export default function EditarPedido() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <div className="container formulario">
                 <form>
                     <div className="itens-pedido">

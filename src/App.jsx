@@ -7,7 +7,8 @@ import CardapioEditor from './pages/CardapioEditor'
 import ControleEstoque from './pages/ControleEstoque'
 import EditarPedido from './pages/EditarPedido'
 import AdicionarPedido from './pages/AdicionarPedido'
-import EstoqueQA from './pages/EstoqueQA.jsx'
+import EstoqueQA from './pages/EstoqueQA'
+import Menu from './pages/Menu'
 import Dashboard from './pages/Dashboard'
 import Relatorios from './pages/Relatorios'
 import DadosPessoais from './pages/DadosPessoais'
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />}/>
-          <Route path="/menu" element={<Dashboard />}/>
+          <Route path="/menu" element={<Menu />}/>
           <Route path="/novo-cadastro" element={<NovoCadastro />}/>
           <Route path="/gestao-pedidos" element={<GestaoPedidos />}/>
           <Route path="/editar-cardapio" element={<CardapioEditor />}/>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/controle-estoque" element={<ControleEstoque />}/>
           <Route path="/estoque-qa" element={<EstoqueQA />}/>
           <Route path="/relatorios" element={<Relatorios />}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/dados-pessoais" element={<DadosPessoais />}/>
           <Route path="/logout" element={<Logout />}/>
         </Routes>

@@ -1,4 +1,5 @@
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import './DadosPessoais.css'
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -81,7 +82,7 @@ export default function DadosPessoais() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <div className="container">
                 <h1 className="title">DADOS PESSOAIS</h1>
 

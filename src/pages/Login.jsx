@@ -1,4 +1,5 @@
-import Menu from '../components/Menu';
+import Header from '../components/Header'
+;
 import './Login.css';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -43,6 +44,12 @@ export default function Login() {
                 sessionStorage.setItem('email', username);
                 setIsLoggedIn(true);
                 navigate("/menu");
+
+            } else if (response.status == 404) {
+                const errorData = await response.text();
+                console.log("Erro:", errorData);
+                alert("Usuário não encontrado.");
+                
             } else {
                 const errorData = await response.text();
                 console.log("Erro:", errorData);
@@ -56,7 +63,7 @@ export default function Login() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <form onSubmit={doLogin} className="container">
                 <h1 className="title">LOGIN</h1>
                 {isLoggedIn && sessionStorage.getItem('token') && (

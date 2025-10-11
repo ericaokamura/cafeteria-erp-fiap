@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import Menu from '../components/Menu';
+import Header from '../components/Header'
+;
 import './GestaoPedidos.css';
 import { useNavigate } from 'react-router-dom';
 import Pagination from '../utils/Pagination';
@@ -202,7 +203,7 @@ export default function GestaoPedidos() {
     
     return (
         <>
-            <Menu />
+            <Header />
             <div className="container">
                 <h2>Pedidos</h2>
                 <div>

@@ -1,5 +1,6 @@
 import './AdicionarPedido.css';
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -76,7 +77,7 @@ export default function AdicionarPedido() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <div className="container formulario">
                 <form>
                     <div className="itens-pedido">

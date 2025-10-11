@@ -1,4 +1,5 @@
-import Menu from '../components/Menu'
+import Header from '../components/Header'
+
 import './NovoCadastro.css'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +69,7 @@ export default function NovoCadastro() {
 
     return (
         <>
-            <Menu/>
+            <Header/>
             <div className="container">
                 <h1 className="title">NOVO CADASTRO</h1>
 
