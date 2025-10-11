@@ -23,7 +23,12 @@ export default function ControleEstoque() {
 
       if (res.ok) {
         const json = await res.json();
+        const lowStockItems = json.filter(item => item.quantidadeAtual < item.quantidadeIdeal);
         setData(json);
+
+        if (lowStockItems.length > 0) {
+          sendBatchEmailAlert(lowStockItems);
+        }
       } else{
         const errorData = res.json();
         console.log("Erro: " + errorData);
