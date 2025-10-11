@@ -9,7 +9,6 @@ import EditarPedido from './pages/EditarPedido'
 import AdicionarPedido from './pages/AdicionarPedido'
 import EstoqueQA from './pages/EstoqueQA'
 import Menu from './pages/Menu'
-import Dashboard from './pages/Dashboard'
 import Relatorios from './pages/Relatorios'
 import DadosPessoais from './pages/DadosPessoais'
 import Logout from './pages/Logout'
@@ -30,7 +29,6 @@ function App() {
           <Route path="/controle-estoque" element={<ControleEstoque />}/>
           <Route path="/estoque-qa" element={<EstoqueQA />}/>
           <Route path="/relatorios" element={<Relatorios />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/dados-pessoais" element={<DadosPessoais />}/>
           <Route path="/logout" element={<Logout />}/>
         </Routes>

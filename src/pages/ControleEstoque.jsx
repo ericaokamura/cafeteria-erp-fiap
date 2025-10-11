@@ -6,36 +6,34 @@ export default function ControleEstoque() {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
+  const [quantidadeAtualizada, setQuantidadeAtualizada] = useState();
+
+  const fetchData = async () => {
 
     const token = sessionStorage.getItem("token");
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8090/itensEstoque/', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }
-        });
-        const json = await response.json();
-        setData(json);
-
-        const lowStockItems = json.filter(
-            (item) => item.quantidadeAtual < item.quantidadeIdeal
-        );
-    
-        if (lowStockItems.length > 0) {
-            console.log("no. de itens de estoque faltando", lowStockItems.length);
-            await sendBatchEmailAlert(lowStockItems);
+    try {
+      const res = await fetch('http://localhost:8090/itensEstoque/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
         }
+      });
 
-      } catch (error) {
-        console.error("Erro ao buscar itens do estoque:", error);
+      if (res.ok) {
+        const json = await res.json();
+        setData(json);
+      } else{
+        const errorData = res.json();
+        console.log("Erro: " + errorData);
       }
-    };
+    } catch (error) {
+      console.error("Erro ao buscar itens do estoque:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -45,6 +43,34 @@ export default function ControleEstoque() {
   const handleFileChange = (e) => {
       setFile(e.target.files[0]);
   };
+
+  const salvarItemEstoque = async (item) => {
+
+    const token = sessionStorage.getItem("token");
+
+    item.quantidadeAtual = quantidadeAtualizada;
+
+    try {
+      const res = await fetch(`http://localhost:8090/itensEstoque/id/${item.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(item)
+      });
+
+      if (res.ok) {
+        console.log("Item do estoque salvo com sucesso!");
+        alert("Item do estoque salvo com sucesso!");
+      } else {
+        const errorData = res.json();
+        console.log("Erro: " + errorData);
+      }
+    } catch (error) {
+      console.log("Erro interno do servidor: " + error);
+    }
+  }
 
   const handleUpload = async () => {
       if (!file) {
@@ -65,7 +91,7 @@ export default function ControleEstoque() {
                 'Authorization': 'Bearer ' + token
             },
             body: formData
-        });
+          });
   
           if (response.ok) {
               setStatus('Upload successful!');
@@ -130,6 +156,7 @@ export default function ControleEstoque() {
                     <th>QUANTIDADE IDEAL</th>
                     <th>QUANTIDADE ATUAL</th>
                     <th>STATUS</th>
+                    <th>EDITAR</th>
                 </tr>
             </thead>
             <tbody>
@@ -147,36 +174,46 @@ export default function ControleEstoque() {
                     };
 
                     return (
-                        <tr key={`${item.descricao}-${item.quantidadeIdeal}`}>
+                        <tr key={index}>
                             <td>{item.descricao}</td>
                             <td>
                                 <input
-                                type="number"
-                                value={item.quantidadeIdeal}
-                                disabled={true}
-                                className="input-quantidade"
+                                  type="number"
+                                  value={item.quantidadeIdeal}
+                                  disabled={true}
+                                  className="input-quantidade"
                                 />
                             </td>
                             <td>
-                                <input
+                              <input
                                 type="number"
                                 value={item.quantidadeAtual}
-                                disabled={true}
+                                onChange={(e) => {
+                                  const newValue = e.target.value;
+                                  setData(prevData =>
+                                    prevData.map((d, i) =>
+                                      i === index ? { ...d, quantidadeAtual: newValue } : d
+                                    )
+                                  );
+                                  setQuantidadeAtualizada(newValue);
+                                }}
                                 className="input-quantidade"
                                 />
                             </td>
                             <td>
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <span style={circleStyle}></span>
-                                <span>{isLowStock ? "Faltando" : "Em estoque"}</span>
-                            </div>
+                              <div style={{ display: "flex", alignItems: "center" }}>
+                                  <span style={circleStyle}></span>
+                                  <span>{isLowStock ? "Faltando" : "Em estoque"}</span>
+                              </div>
+                            </td>
+                            <td>
+                              <button className="buttonSalvar" onClick={() => salvarItemEstoque(item)}>Salvar</button>
                             </td>
                         </tr>
                     );
                 })}
             </tbody>
         </table>
-      
     </div>
     </>
   );
