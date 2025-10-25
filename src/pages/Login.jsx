@@ -50,10 +50,14 @@ export default function Login() {
                 console.log("Erro:", errorData);
                 alert("Usuário não encontrado.");
                 
-            } else {
+            } else if (response.status == 403) {
                 const errorData = await response.text();
                 console.log("Erro:", errorData);
-                alert("Usuário ou senha inválidos.");
+                if(errorData.includes("bloqueada")) {
+                    alert("Usuário com conta bloqueada.");
+                } else {
+                    alert("Usuário ou senha inválidos.");
+                }
             }
         } catch (error) {
             console.error("Erro na requisição:", error);
