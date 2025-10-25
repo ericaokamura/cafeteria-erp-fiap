@@ -12,6 +12,8 @@ export default function ControleEstoque() {
 
     const token = sessionStorage.getItem("token");
 
+    const username = sessionStorage.getItem("email");
+
     try {
       const res = await fetch('http://localhost:8090/itensEstoque/', {
         method: 'GET',
@@ -27,7 +29,7 @@ export default function ControleEstoque() {
         setData(json);
 
         if (lowStockItems.length > 0) {
-          sendBatchEmailAlert(lowStockItems);
+          sendBatchEmailAlert(lowStockItems, username);
         }
       } else{
         const errorData = res.json();
@@ -120,10 +122,10 @@ export default function ControleEstoque() {
       }
   };   
 
-  async function sendBatchEmailAlert(lowStockItems) {
+  async function sendBatchEmailAlert(lowStockItems, username) {
     try {
       const token = sessionStorage.getItem("token");
-      const response = fetch("http://localhost:8090/alert/emailBatch", {
+      const response = fetch("http://localhost:8090/alert/emailBatch/" + username, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
